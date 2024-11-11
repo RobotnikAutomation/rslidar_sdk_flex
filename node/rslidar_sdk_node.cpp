@@ -86,7 +86,9 @@ int main(int argc, char** argv)
    config_path = (std::string)PROJECT_PATH;
 #endif
 
-   config_path += "/config/config.yaml";
+  //  config_path += "/config/config.yaml";
+  std::string rslidar_config_file = (std::string)PROJECT_PATH + "/config/config.yaml";
+  ros::param::get("rslidar_config_file", rslidar_config_file);
 
 #ifdef ROS_FOUND
   ros::NodeHandle priv_hh("~");
@@ -107,7 +109,8 @@ int main(int argc, char** argv)
   YAML::Node config;
   try
   {
-    config = YAML::LoadFile(config_path);
+    // config = YAML::LoadFile(config_path);
+    config = YAML::LoadFile(rslidar_config_file);
     RS_INFO << "--------------------------------------------------------" << RS_REND;
     RS_INFO << "Config loaded from PATH:" << RS_REND;
     RS_INFO << config_path << RS_REND;

@@ -1,4 +1,6 @@
 <launch>
+  <arg name="rslidar_config_file" default="$(find rslidar_sdk)/config/config.yaml"/>
+  <param name="rslidar_config_file" value="$(arg rslidar_config_file)"/>
   <node pkg="rslidar_sdk" name="rslidar_sdk_node" type="rslidar_sdk_node" output="screen">
     <param name="config_path" value=""/>
   </node>
