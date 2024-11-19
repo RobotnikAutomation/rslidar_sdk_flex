@@ -122,6 +122,27 @@ int main(int argc, char** argv)
     return -1;
   }
 
+  std::string lidar_type = "";
+  priv_hh.param("lidar_type", lidar_type, lidar_type);
+  if (lidar_type != "")
+    config["lidar"][0]["driver"]["lidar_type"] = lidar_type;
+
+  int msop_port = -1;
+  priv_hh.param("msop_port", msop_port, msop_port);
+  if (msop_port != -1)
+    config["lidar"][0]["driver"]["msop_port"] = msop_port;
+
+  int difop_port = -1;
+  priv_hh.param("difop_port", difop_port, difop_port);
+  if (difop_port != -1)
+    config["lidar"][0]["driver"]["difop_port"] = difop_port;
+
+  std::string ros_frame_id = "";
+  priv_hh.param("frame_id", ros_frame_id, ros_frame_id);
+  if (ros_frame_id != "")
+    config["lidar"][0]["ros"]["ros_frame_id"] = ros_frame_id;
+  
+
   std::shared_ptr<NodeManager> demo_ptr = std::make_shared<NodeManager>();
   demo_ptr->init(config);
   demo_ptr->start();
